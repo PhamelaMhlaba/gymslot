@@ -1,0 +1,1 @@
+{"version":3,"file":"gymRoutes.d.ts","sourceRoot":"","sources":["../../src/routes/gymRoutes.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAgC,MAAM,SAAS,CAAC;AAC7E,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,2BAA2B,CAAC;AAqB5D,wBAAsB,SAAS,CAC7B,OAAO,EAAE,eAAe,EACxB,OAAO,EAAE;IAAE,UAAU,EAAE,UAAU,CAAA;CAAE,GAClC,OAAO,CAAC,IAAI,CAAC,CAkDf"}
