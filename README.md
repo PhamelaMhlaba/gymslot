@@ -161,3 +161,7 @@ cache consistent within a 10-second window at worst (or immediately after a book
 **For a global user base**, ElastiCache Global Datastore replicates the cache to AWS
 regions closest to users (e.g., `eu-west-1` for Europe, `ap-southeast-1` for Asia),
 cutting read latency from ~80 ms to ~5 ms for international members.
+
+
+
+cd mkdir -p /home/claude/gymslot/{backend/{src/{routes,services,plugins,types,tests},lambda},mobile/src/{components,hooks,types,api},infra/lib} && echo "done"
