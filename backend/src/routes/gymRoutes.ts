@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
-import type { GymService } from '../services/gymService.js';
-import type { BookSlotRequest } from '../types/domain.js';
+import type { GymService } from '../services/gymService';
+import type { BookSlotRequest } from '../types/domain';
 
 const gymParamsSchema = {
   type: 'object',

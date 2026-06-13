@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import type { Gym, Booking } from '../types/domain.js';
+import type { Gym, Booking } from '../types/domain';
 
 export interface GymRepository {
   findGymById(gymId: string): Promise<Gym | null>;
@@ -35,7 +35,6 @@ export class InMemoryGymRepository implements GymRepository {
         },
       ],
     ]);
-
     this.bookings = new Map<string, Booking>();
   }
 
@@ -43,12 +42,8 @@ export class InMemoryGymRepository implements GymRepository {
     return this.gyms.get(gymId) ?? null;
   }
 
-  async incrementBookingsIfAvailable(
-    gymId: string,
-    expectedVersion: number,
-  ): Promise<boolean> {
+  async incrementBookingsIfAvailable(gymId: string, expectedVersion: number): Promise<boolean> {
     const gym = this.gyms.get(gymId);
-
     if (!gym) return false;
     if (gym.version !== expectedVersion) return false;
     if (gym.currentBookings >= gym.capacity) return false;
@@ -58,13 +53,10 @@ export class InMemoryGymRepository implements GymRepository {
       currentBookings: gym.currentBookings + 1,
       version: gym.version + 1,
     });
-
     return true;
   }
 
-  async createBooking(
-    bookingData: Omit<Booking, 'id' | 'createdAt'>,
-  ): Promise<Booking> {
+  async createBooking(bookingData: Omit<Booking, 'id' | 'createdAt'>): Promise<Booking> {
     const booking: Booking = {
       ...bookingData,
       id: randomUUID(),
@@ -74,17 +66,9 @@ export class InMemoryGymRepository implements GymRepository {
     return booking;
   }
 
-  async findExistingBooking(
-    gymId: string,
-    userId: string,
-    slotTime: string,
-  ): Promise<Booking | null> {
+  async findExistingBooking(gymId: string, userId: string, slotTime: string): Promise<Booking | null> {
     for (const booking of this.bookings.values()) {
-      if (
-        booking.gymId === gymId &&
-        booking.userId === userId &&
-        booking.slotTime === slotTime
-      ) {
+      if (booking.gymId === gymId && booking.userId === userId && booking.slotTime === slotTime) {
         return booking;
       }
     }

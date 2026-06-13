@@ -1,9 +1,5 @@
-import type { GymRepository } from './gymRepository.js';
-import type {
-  CapacityResponse,
-  BookSlotRequest,
-  BookSlotResponse,
-} from '../types/domain.js';
+import type { GymRepository } from './gymRepository';
+import type { CapacityResponse, BookSlotRequest, BookSlotResponse } from '../types/domain';
 
 export type Result<T, E = BookingError> =
   | { success: true; data: T }
@@ -41,10 +37,7 @@ export class GymService {
     };
   }
 
-  async bookSlot(
-    gymId: string,
-    request: BookSlotRequest,
-  ): Promise<Result<BookSlotResponse>> {
+  async bookSlot(gymId: string, request: BookSlotRequest): Promise<Result<BookSlotResponse>> {
     const { userId, slotTime } = request;
 
     const existing = await this.repo.findExistingBooking(gymId, userId, slotTime);
@@ -79,11 +72,13 @@ export class GymService {
       }
     }
 
+    const errorMessage = 'Could not secure booking after ' + MAX_RETRIES + ' attempts. Please retry.';
+
     return {
       success: false,
       error: {
         code: 'BOOKING_CONFLICT',
-        message: `Could not secure booking after ${MAX_RETRIES} attempts. Please retry.`,
+        message: errorMessage,
       },
     };
   }

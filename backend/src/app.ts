@@ -1,8 +1,8 @@
 import Fastify, { type FastifyInstance } from 'fastify';
 import sensible from '@fastify/sensible';
-import { InMemoryGymRepository } from './services/gymRepository.js';
-import { GymService } from './services/gymService.js';
-import { gymRoutes } from './routes/gymRoutes.js';
+import { InMemoryGymRepository } from './services/gymRepository';
+import { GymService } from './services/gymService';
+import { gymRoutes } from './routes/gymRoutes';
 
 export async function buildApp(): Promise<FastifyInstance> {
   const app = Fastify({
